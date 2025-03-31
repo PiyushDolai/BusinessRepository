@@ -25,7 +25,7 @@ public class RetailBillingController {
 	}
 	
 	@GetMapping("/addProducts")
-	public String showAddProductsPage(Model model) {
+	public String showAddProductsPage(Model model) throws Exception {
 		//model.addAttribute("productDto", new ProductDto());
 		Map<Integer, String> categoryMap = commonService.getProductCategoryMap();
 
@@ -37,7 +37,7 @@ public class RetailBillingController {
 	}
 	
 	@PostMapping("/saveProducts")
-	public String saveProducts(@ModelAttribute Product product, Model model) {
+	public String saveProducts(@ModelAttribute Product product, Model model) throws Exception {
 		//System.out.println(productDto.getProductList().get(0).getProductName());
 		
 		Map<Integer, String> categoryMap = commonService.getProductCategoryMap();

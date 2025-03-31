@@ -1,21 +1,27 @@
 package com.dolaicorp.accountbuddy.app.service;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.dolaicorp.accountbuddy.app.dao.CommonDao;
+import com.dolaicorp.accountbuddy.app.model.Category;
 
 @Service
 public class CommonService {
 
-	public Map<Integer, String> getProductCategoryMap(){
-		Map<Integer, String> categoryMap = new HashMap<>();
-		categoryMap.put(1, "Detergent");
-		categoryMap.put(2, "Soap");
-		categoryMap.put(3, "Chanachur");
-		categoryMap.put(4, "Biscuit");
-		categoryMap.put(5, "Snacks");
-		
-		return categoryMap;
+	@Autowired
+	CommonDao commonDao;
+	
+	public Map<Integer, String> getProductCategoryMap() throws Exception{
+		List<Category> categoryList = commonDao.getProductCategoryList();
+		if(!categoryList.isEmpty()) {
+			return categoryList.stream().collect(Collectors.toMap(Category::getId, Category::getCategoryName));
+		}else {
+			return null;
+		}
 	} 
 }
