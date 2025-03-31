@@ -12,6 +12,9 @@ public class Category {
 	private Integer id;
 	private String categoryName;
 	private String categoryDescription;
+	private String categoryStatus;
+	private String createdOn;
+	private String updatedOn;
 	
 	public Category() {}
 	

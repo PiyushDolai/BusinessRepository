@@ -7,17 +7,17 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dolaicorp.accountbuddy.app.dao.CommonDao;
+import com.dolaicorp.accountbuddy.app.dao.CategoryDao;
 import com.dolaicorp.accountbuddy.app.model.Category;
 
 @Service
 public class CommonService {
 
 	@Autowired
-	CommonDao commonDao;
+	CategoryDao categoryDao;
 	
 	public Map<Integer, String> getProductCategoryMap() throws Exception{
-		List<Category> categoryList = commonDao.getProductCategoryList();
+		List<Category> categoryList = categoryDao.getProductCategoryDtlsList();
 		if(!categoryList.isEmpty()) {
 			return categoryList.stream().collect(Collectors.toMap(Category::getId, Category::getCategoryName));
 		}else {
